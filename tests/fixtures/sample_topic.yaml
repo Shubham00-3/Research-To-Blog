@@ -1,0 +1,25 @@
+# Sample topic specification for testing
+
+topic: "How do large language models improve software code review"
+
+audience: "software engineers and engineering managers"
+
+goals:
+  - "Explain how LLMs assist in code review processes"
+  - "Discuss benefits such as bug detection and style consistency"
+  - "Address limitations including false positives and context understanding"
+  - "Provide practical recommendations for adoption"
+
+keywords:
+  - "large language models"
+  - "LLM"
+  - "code review"
+  - "AI code review"
+  - "software quality"
+  - "automated code analysis"
+
+constraints:
+  word_count: 2000-3000
+  tone: "professional but accessible"
+  depth: "intermediate technical level"
+

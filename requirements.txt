@@ -1,0 +1,44 @@
+# Core dependencies
+python-dotenv==1.0.0
+pydantic>=2.8.0
+pydantic-settings>=2.3.0
+
+# LLM and orchestration
+groq>=0.4.2
+langgraph==0.2.16
+langchain-core==0.2.43
+
+# Embeddings (local, free)
+fastembed>=0.7.3
+sentence-transformers>=3.0.0
+
+# Vector DB
+chromadb>=0.4.24
+
+# Search and scraping
+tavily-python>=0.3.0
+duckduckgo-search>=6.0.0
+httpx>=0.27.0
+trafilatura>=1.12.0
+readability-lxml>=0.8.0
+beautifulsoup4>=4.12.0
+lxml>=5.3.0
+
+# API and CLI
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+typer[all]>=0.9.0
+
+# Logging and utilities
+structlog>=24.1.0
+python-slugify>=8.0.0
+textstat>=0.7.0
+pyparsing>=3.1.0
+
+# Development and testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+ruff>=0.2.0
+black>=24.1.0
+
