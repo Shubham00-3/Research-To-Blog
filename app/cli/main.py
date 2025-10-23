@@ -8,7 +8,7 @@ from typing import Optional
 import structlog
 import typer
 from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, TextColumn
+from rich.progress import Progress, TextColumn
 from rich.table import Table
 
 from app.config import settings
@@ -65,9 +65,8 @@ def run(
     # Create initial state
     initial_state = create_initial_state(run_id, topic_spec)
 
-    # Run pipeline with progress indicator
+    # Run pipeline with progress indicator (no spinner for Windows compatibility)
     with Progress(
-        SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
         console=console,
     ) as progress:
@@ -80,7 +79,7 @@ def run(
 
     # Display results
     if final_state.get("status") == "completed":
-        console.print("\n[bold green]✓ Pipeline completed successfully![/bold green]\n")
+        console.print("\n[bold green][OK] Pipeline completed successfully![/bold green]\n")
 
         # Display metrics
         metrics = final_state.get("quality_metrics")
@@ -117,7 +116,7 @@ def run(
             md_artifact = save_artifact(final_state, out, format="md")
             json_artifact = save_artifact(final_state, out, format="json")
 
-            console.print(f"[green]✓ Saved:[/green]")
+            console.print(f"[green][OK] Saved:[/green]")
             console.print(f"  • Markdown: {md_artifact.file_path}")
             console.print(f"  • JSON: {json_artifact.file_path}")
 
@@ -129,7 +128,7 @@ def run(
                 console.print(f"  {log}")
 
     else:
-        console.print(f"\n[bold red]✗ Pipeline failed: {final_state.get('error')}[/bold red]")
+        console.print(f"\n[bold red][FAIL] Pipeline failed: {final_state.get('error')}[/bold red]")
         raise typer.Exit(code=1)
 
 
@@ -163,7 +162,7 @@ def config():
     table.add_row("Writer Model", settings.groq_model_writer)
     table.add_row("Embedding Backend", settings.embed_backend)
     table.add_row("Embedding Model", settings.embed_model_name)
-    table.add_row("Tavily API", "✓ Configured" if settings.tavily_api_key else "✗ Not configured")
+    table.add_row("Tavily API", "[OK] Configured" if settings.tavily_api_key else "[X] Not configured")
     table.add_row("Publish Target", settings.publish_target)
     table.add_row("Output Directory", str(settings.output_dir))
     table.add_row("Min Citation Coverage", f"{settings.min_citation_coverage:.0%}")

@@ -26,8 +26,8 @@ class Settings(BaseSettings):
         description="Fast model for orchestration, planning, fact-checking",
     )
     groq_model_writer: str = Field(
-        default="llama-3.1-70b-versatile",
-        description="Stronger model for writing and editing",
+        default="llama-3.3-70b-versatile",
+        description="Stronger model for writing and editing (update if decommissioned)",
     )
     groq_temperature: float = Field(default=0.1, ge=0.0, le=2.0)
     groq_max_tokens: int = Field(default=4096, ge=1)
